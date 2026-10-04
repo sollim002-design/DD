@@ -179,13 +179,12 @@ a { color: inherit; text-decoration: none; }
 .pf-mosaic-visual { display: block; width: 100%; height: 100%; object-fit: cover; background: var(--ad-card); transition: transform 0.6s ease; }
 .pf-mosaic-item:hover .pf-mosaic-visual { transform: scale(1.05); }
 .pf-mosaic-overlay {
-  position: absolute; inset: 0; padding: 14px; display: flex; flex-direction: column; justify-content: flex-end; gap: 2px;
-  background: linear-gradient(180deg, transparent 28%, rgba(12,11,10,0.88) 100%); opacity: 0; transition: opacity 0.4s ease;
+  position: absolute; top: 0; left: 0; right: 0; padding: 12px 14px 22px; display: flex; flex-direction: column; justify-content: flex-start; gap: 2px;
+  background: linear-gradient(180deg, rgba(12,11,10,0.72) 0%, transparent 100%); pointer-events: none;
 }
-.pf-mosaic-item:hover .pf-mosaic-overlay, .pf-mosaic-item:focus-within .pf-mosaic-overlay, .pf-mosaic-item:focus .pf-mosaic-overlay { opacity: 1; }
+.pf-mosaic-cat, .pf-mosaic-title { text-shadow: 0 1px 6px rgba(0,0,0,0.75); }
 .pf-mosaic-cat { font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ad-accent); }
 .pf-mosaic-title { font-size: 16px; font-weight: 700; color: var(--ad-text); font-family: 'Syne', 'Noto Sans KR', sans-serif; letter-spacing: -0.02em; }
-.pf-mosaic-num { position: absolute; top: 12px; left: 12px; z-index: 1; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; color: rgba(240,235,227,0.7); text-shadow: 0 1px 4px rgba(0,0,0,0.6); }
 
 /* ---------- 05 작업 순서 ---------- */
 .ad-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
@@ -233,6 +232,9 @@ a { color: inherit; text-decoration: none; }
   pointer-events: none; z-index: 5; transform: translate(-50%, -50%); opacity: 0; transition: opacity 0.3s; mix-blend-mode: screen;
 }
 .art-demo.is-glowing .ad-cursor-glow { opacity: 1; }
+
+/* 첫 화면 번호 (01) — 다른 섹션 번호와 같은 스타일 */
+.ad-hero-tag .ad-hero-no { font-size: 18px; font-weight: 600; letter-spacing: 0.12em; color: var(--ad-accent); margin-right: 12px; }
 
 /* ---------- 영상 모달 ---------- */
 .ad-modal {
@@ -349,7 +351,7 @@ button.ap-chip.on { background: var(--ad-accent); border-color: var(--ad-accent)
   <header class="ad-hero" id="hero">
     <div class="ad-hero-layout">
       <div class="ad-hero-copy">
-        <span class="ad-hero-tag" data-ad-animate>GreyMusicStudio</span>
+        <span class="ad-hero-tag" data-ad-animate><span class="ad-hero-no">01</span>GreyMusicStudio</span>
         <h1 data-ad-animate>그레이뮤직스튜디오<span class="ad-hero-accent">엔터 믹싱의 기준을 담다</span></h1>
         <p data-ad-animate>전직 엔터 프로듀서, 12년차 음악인<br>믹싱 / 디렉팅 / 레코딩 / 레슨 등 모든 문의 환영</p>
       </div>
@@ -643,7 +645,6 @@ INST·보컬·코러스 등 필요한 파일을 압축하여 첨부 또는 구�
   if (pf) {
     var mosaic = SAMPLE_GROUPS.map(function (g, i) {
       return '<article class="pf-mosaic-item" data-open="' + i + '" tabindex="0">'
-        + '<span class="pf-mosaic-num">0' + (i + 1) + '</span>'
         + '<img class="pf-mosaic-visual" src="https://img.youtube.com/vi/' + g.videos[0] + '/maxresdefault.jpg" data-vid="' + g.videos[0] + '" alt="' + esc(g.title) + '" loading="lazy">'
         + '<div class="pf-mosaic-overlay"><span class="pf-mosaic-cat">SAMPLE</span><span class="pf-mosaic-title">' + esc(g.title) + '</span></div>'
         + '</article>';
